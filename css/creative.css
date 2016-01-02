@@ -572,7 +572,7 @@ body {
         font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
         width: 200px;
         height: 38px;
-        border: 1px solid #51CD7B;
+        border: 1px solid #979fc5;
         background-color: #ffffff; 
         width: 100%;
         padding: 3px 12px;
@@ -584,7 +584,6 @@ body {
         font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
         font-weight: 400;
         font-size: 13px;
-        text-transform: uppercase;
         letter-spacing: 2px; 
     }   
     .signupButton {
@@ -627,10 +626,5 @@ body {
 
     .signupButton:active {
         background-color: #6c7cc7;
-    }
-    .signupInput:hover {
-        background-color: #ffffff;
-        color: green;
-        border: 1px solid green;
     }
 }
