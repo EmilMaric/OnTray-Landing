@@ -1,1 +1,10 @@
 box: wercker/default
+no-response-timeout: 10
+
+deploy:
+    steps:
+        -s3sync:
+            key_id: $ACCESS_KEY_ID
+            key_secret: $AWS_SECRET_ACCESS_KEY
+            bucket_url: $AWS_BUCKET_URL
+            source_dir: ./
