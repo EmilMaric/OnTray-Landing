@@ -73,10 +73,11 @@
             }
             return { name: 'unknown', version: 0 };
         },
-        logMetadata: function() {
+        logMetadata: function(email) {
         	var e = module.init(),
         		debug = '';
-    
+            
+            debug += 'entered email = ' + email + '\n\n';
 		    debug += 'os.name = ' + e.os.name + '\n';
 		    debug += 'os.version = ' + e.os.version + '\n';
 		    debug += 'browser.name = ' + e.browser.name + '\n';
@@ -91,10 +92,19 @@
 		    window.alert(debug);
         },
         submitEmail: function () {
-			$('#submitEmail').click(function(event) {
+			$('.signupButton').click(function(event) {
 				event.preventDefault();
-				var email = $('#emailInput').val()
-				$.ajax({
+
+				var buttonId = '#' + event.target.id;
+                var signupDiv = 'div.signup'
+                var input = 'input[class=signupInput]';
+                var email = $(buttonId).closest(signupDiv).find(input).val();
+				
+                if (email == null || email == "") {
+                    return; // do nothing if no email was provided
+                }
+
+                $.ajax({
 					type: 'POST',
 					url: '',
 					data: email,
@@ -102,7 +112,7 @@
 						window.alert('Email submitted.');
 					},
 					error: function() {
-						module.logMetadata();
+						module.logMetadata(email);
 					}
 				});
 			});
