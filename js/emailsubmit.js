@@ -91,6 +91,10 @@
 		    
 		    window.alert(debug);
         },
+        emailIsValid: function(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        },
         submitEmail: function () {
 			$('.signupButton').click(function(event) {
 				event.preventDefault();
@@ -100,8 +104,12 @@
                 var input = 'input[class=signupInput]';
                 var email = $(buttonId).closest(signupDiv).find(input).val();
 				
-                if (email == null || email == "") {
-                    return; // do nothing if no email was provided
+                if (!module.emailIsValid(email)) {
+                    if (email != null && email != "") {
+                        // there's a non-empty string, but it's not a valid email address
+                        window.alert('Please enter a valid email address.');
+                    }
+                    return; // text input was empty, so do nothing
                 }
 
                 $.ajax({
