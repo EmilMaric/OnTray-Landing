@@ -98,7 +98,7 @@
                     'os-name':  metadata.os.name,
                     'os-version': metadata.os.version,
                     'browser-name': metadata.browser.name,
-                    'browser.version': metadata.browser.version
+                    'browser-version': metadata.browser.version
                 });
 
                 $.ajax({
