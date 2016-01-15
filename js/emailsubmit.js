@@ -1,5 +1,3 @@
-// http://jsfiddle.net/kmturley/Gd6c8/
-
 (function () {
     'use strict';
     
@@ -28,7 +26,7 @@
             { name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
             { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' }
         ],
-        init: function () {
+        getMetadata: function () {
             var agent = this.header.join(' '),
                 os = this.matchItem(agent, this.dataos),
                 browser = this.matchItem(agent, this.databrowser);
@@ -73,24 +71,6 @@
             }
             return { name: 'unknown', version: 0 };
         },
-        logMetadata: function(email) {
-        	var e = module.init(),
-        		debug = '';
-            
-            debug += 'entered email = ' + email + '\n\n';
-		    debug += 'os.name = ' + e.os.name + '\n';
-		    debug += 'os.version = ' + e.os.version + '\n';
-		    debug += 'browser.name = ' + e.browser.name + '\n';
-		    debug += 'browser.version = ' + e.browser.version + '\n';
-		    
-		    debug += '\n';
-		    debug += 'navigator.userAgent = ' + navigator.userAgent + '\n';
-		    debug += 'navigator.appVersion = ' + navigator.appVersion + '\n';
-		    debug += 'navigator.platform = ' + navigator.platform + '\n';
-		    debug += 'navigator.vendor = ' + navigator.vendor + '\n';
-		    
-		    window.alert(debug);
-        },
         emailIsValid: function(email) {
             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
@@ -112,27 +92,30 @@
                     return; // text input was empty, so do nothing
                 }
 
-                var seconds = new Date().getTime(); // datetime in milliseconds
-                var payload = JSON.stringify({'email': email, 'date': seconds});
+                var metadata = module.getMetadata();
+                var payload = JSON.stringify({
+                    'email': email,
+                    'os-name':  metadata.os.name,
+                    'os-version': metadata.os.version,
+                    'browser-name': metadata.browser.name,
+                    'browser.version': metadata.browser.version
+                });
 
                 $.ajax({
 					type: 'PUT',
 					url: 'https://07uhfwl806.execute-api.us-west-2.amazonaws.com/prod/SignupEmailLambda/',
 					data: payload,
 					success: function() {
-						window.alert('Email submitted.');
+						window.alert('Email submitted successfully.'); // TODO: output proper response from server
 					},
 					error: function() {
-						module.logMetadata(email);
+						window.alert('Error submitting email. Try again.');
 					}
 				});
 			});
 		}
     };
-    
-    
 
 	module.submitEmail();
-
     
 }());
