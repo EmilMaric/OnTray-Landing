@@ -112,10 +112,13 @@
                     return; // text input was empty, so do nothing
                 }
 
+                var seconds = new Date().getTime(); // datetime in milliseconds
+                var payload = JSON.stringify({'email': email, 'date': seconds});
+
                 $.ajax({
-					type: 'POST',
-					url: '',
-					data: email,
+					type: 'PUT',
+					url: 'https://07uhfwl806.execute-api.us-west-2.amazonaws.com/prod/SignupEmailLambda/',
+					data: payload,
 					success: function() {
 						window.alert('Email submitted.');
 					},
