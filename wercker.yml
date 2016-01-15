@@ -1,6 +1,8 @@
 box: wercker/default
 no-response-timeout: 10
 
+build:
+
 deploy:
     steps:
         - s3sync:
