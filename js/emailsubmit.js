@@ -80,9 +80,8 @@
 				event.preventDefault();
 
 				var buttonId = '#' + event.target.id;
-                var signupDiv = 'div.signup'
-                var input = 'input[class=signupInput]';
-                var email = $(buttonId).closest(signupDiv).find(input).val();
+                var inputElement = $(buttonId).closest('div.signup').find('input[class=signupInput]');
+                var email = inputElement.val();
 				
                 if (!module.emailIsValid(email)) {
                     if (email != null && email != "") {
@@ -111,7 +110,9 @@
 					error: function() {
 						window.alert('Error submitting email. Try again.');
 					}
-				});
+				}).done(function() {
+                    inputElement.val(''); // clear input field after submission
+                });
 			});
 		}
     };
