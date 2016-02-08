@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="OnTray is a peer-to-peer mobile food delivery service for university campuses that allows students to eat when they want and work when they can.">
+    <meta name="author" content="Ryan M. A. Wong">
+    
+    <meta property="og:url" content="http://ontray.co" />
+    <meta property="og:title" content="Welcome to OnTray!" />
+    <meta property="og:site_name" content="OnTray" />
+    <meta property="fb:app_id" content="571589182990764" />
+    <meta property="og:image" content="http://ontray.co/img/OnTrayLogo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:description" content="OnTray is a peer-to-peer mobile food delivery service for university campuses that allows students to eat when they want and work when they can." />
 
     <title>OnTray</title>
 
@@ -348,6 +358,25 @@
 
     <!-- Submit Email -->
     <script src="js/emailsubmit.js"></script>
+    
+    <!-- Facebook Web SDK -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '571589182990764',
+                xfbml      : true,
+                version    : 'v2.5'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
 </body>
 
