@@ -100,6 +100,8 @@
                     'browser-version': metadata.browser.version
                 });
 
+                inputElement.val(''); // clear input field immediately after click event
+
                 $.ajax({
 					type: 'PUT',
 					url: 'https://07uhfwl806.execute-api.us-west-2.amazonaws.com/prod/SignupEmailLambda/',
@@ -110,9 +112,7 @@
 					error: function() {
 						window.alert('Error submitting email. Try again.');
 					}
-				}).done(function() {
-                    inputElement.val(''); // clear input field after submission
-                });
+				});
 			});
 		}
     };
