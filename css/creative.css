@@ -290,7 +290,6 @@ header .header-content .header-content-inner p {
     text-align: center;
     color: #fff;
     opacity: 0;
-    /*background: rgba(75,92,174,.85);*/
     background: rgba(0,0,0,.4);
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
@@ -313,7 +312,6 @@ header .header-content .header-content-inner p {
 
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    padding: 0 14px;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 
